@@ -111,6 +111,11 @@ public class CygpathLauncherDecorator extends LauncherDecorator {
      */
     private static class GetCygpathTask implements Callable<String,IOException> {
         private File getCygwinRoot() throws IOException {
+	    File common = new File("c:\\cygwin");
+            if (common.exists()) {
+                return common;
+            }
+
             try {
                 RegistryKey key = RegistryKey.LOCAL_MACHINE.openReadonly("SOFTWARE\\Cygnus Solutions\\Cygwin\\mounts v2\\/");
                 try {
